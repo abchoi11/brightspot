@@ -2,6 +2,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { db } from "../../firebase-config";
+import DeleteArticle from "../DeleteArticle/DeleteArticle";
 import "./Articles.css"
 
 function Articles(props) {
@@ -35,6 +36,7 @@ function Articles(props) {
                   <h2>{title}</h2>
                   <p>{createdAt.toDate().toDateString()}</p>
                   <h4>{description}</h4>
+                  <DeleteArticle id={id} imageURL={imageURL}/>
                 </div>
             </div>
           </div>
