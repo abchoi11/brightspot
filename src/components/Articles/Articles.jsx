@@ -1,11 +1,14 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { db } from "../../firebase-config";
+import { Col, Row } from "react-bootstrap";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../../firebase-config";
 import DeleteArticle from "../DeleteArticle/DeleteArticle";
-import "./Articles.css"
+import "./Articles.css";
 
 function Articles(props) {
+  const [user] = useAuthState(auth);
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -26,21 +29,57 @@ function Articles(props) {
       {articles.length === 0 ? (
         <p>no articles found!</p>
       ) : (
-        articles.map(({id, title, description, imageURL, createdAt}) => (
-          <div key={id} className="border mt-3 p-3 bg-light">
-            <div className="row article-box">
+        articles.map(
+          ({
+            id,
+            title,
+            description,
+            imageURL,
+            createdAt,
+            createdBy,
+            userId,
+            likes,
+            comments,
+          }) => (
+            <div key={id} className="border mt-3 p-3 bg-light">
+              <div className="row article-box">
                 <div className="col-3">
-                    <img className="coverImage" src={imageURL} alt="title image"/>
+                  <img
+                    className="coverImage"
+                    src={imageURL}
+                    alt="title image"
+                  />
                 </div>
                 <div className="col-9 ps-3">
+                  <Row>
+                    <Col md={6}>
+                      {createdBy && (
+                        <span className="badge bg-primary">{createdBy}</span>
+                      )}
+                    </Col>
+                    <Col md={6}>
+                      {user && user.uid === userId && (
+                        <Col md={6}>
+                          {createdBy && (
+                            <span>
+                              <DeleteArticle id={id} imageURL={imageURL} />
+                            </span>
+                          )}
+                        </Col>
+                      )}
+                    </Col>
+                  </Row>
                   <h2>{title}</h2>
                   <p>{createdAt.toDate().toDateString()}</p>
-                  <h4>{description}</h4>
-                  <DeleteArticle id={id} imageURL={imageURL}/>
+                  <h5>{description}</h5>
+                  <div className="d-flex flex-row-reverse">
+                    
+                  </div>
                 </div>
+              </div>
             </div>
-          </div>
-        ))
+          )
+        )
       )}
     </div>
   );

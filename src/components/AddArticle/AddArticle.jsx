@@ -1,11 +1,14 @@
 import { collection, Timestamp, addDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { storage, db } from "./../../firebase-config";
+import { storage, db, auth } from "./../../firebase-config";
 import "./AddArticle.css";
 import { toast } from "react-toastify";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 
 function AddArticle(props) {
+  const [user] = useAuthState(auth);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -58,6 +61,10 @@ function AddArticle(props) {
             description: formData.description,
             imageURL: url,
             createdAt: Timestamp.now().toDate(),
+            createdBy: user.displayName,
+            userId: user.uid,
+            likes:[],
+            comments:[],
           })
             .then(() => {
               toast("Article added successfully", { type: "success" });
@@ -73,49 +80,65 @@ function AddArticle(props) {
 
   return (
     <div className="border p-3 mt-3 bg-light articleAdd ">
-      <h2>Create Article</h2>
-      <div className="form-group">
-        <label htmlFor="">Title</label>
-        <input
-          type="text"
-          name="title"
-          className="form-control"
-          value={formData.title}
-          onChange={(e) => handleChange(e)}
-        />
-      </div>
-      <br></br>
-
-      <label htmlFor="">Description</label>
-      <textarea
-        name="description"
-        className="form-control"
-        value={formData.description}
-        onChange={(e) => handleChange(e)}
-      />
-
-      <label htmlFor="">Image</label>
-      <input
-        type="file"
-        name="image"
-        accept="image/*"
-        className="form-control"
-        onChange={(e) => handleImageChange(e)}
-      />
-
-      {progress === 0 ? null : (
-        <div className="progress">
-          <div
-            className="progress-bar progress-bar-striped mt-2"
-            style={{ width: `${progress}%` }}
-          >
-            {`uploading image ${progress}%`}
+      {!user ? (
+        <>
+          <div style={{ maxWidth: 400 }}>
+            <h2>
+              {" "}
+              <Link to="/login">Login to Create an Article</Link>
+            </h2>
+            Don't have an account?
+            <Link to="/register"> Sign Up </Link>
           </div>
-        </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          <h2>Create Article</h2>
+          <div className="form-group">
+            <label htmlFor="">Title</label>
+            <input
+              type="text"
+              name="title"
+              className="form-control"
+              value={formData.title}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <br></br>
+          <label htmlFor="">Description</label>
+          <textarea
+            name="description"
+            className="form-control"
+            value={formData.description}
+            onChange={(e) => handleChange(e)}
+          />
+          <label htmlFor="">Image</label>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            className="form-control"
+            onChange={(e) => handleImageChange(e)}
+          />
+          {progress === 0 ? null : (
+            <div className="progress">
+              <div
+                className="progress-bar progress-bar-striped mt-2"
+                style={{ width: `${progress}%` }}
+              >
+                {`uploading image ${progress}%`}
+              </div>
+            </div>
+          )}
+          <button
+            className="form-control btn-primary mt-2"
+            onClick={handleSubmit}
+          >
+            Publish
+          </button>
+        </>
       )}
-      <button className="form-control btn-primary mt-2" onClick={handleSubmit}>
-        Publish
-      </button>
     </div>
   );
 }
