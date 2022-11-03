@@ -22,6 +22,9 @@ function Navbar(props) {
         <Link className="nav-link" to="/register">
           Sign Up{" "}
         </Link>
+        <Link className="nav-link" to="/create">
+          Add Article{" "}
+        </Link>
         <div>
           {user && (
             <>

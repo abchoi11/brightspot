@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Register from "./components/auth/Register/Register";
 import Login from "./components/auth/Login/Login";
+import ArticleView from "./components/ArticleView/ArticleView";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/create" element={<AddArticle />} />
+          <Route path="/article/:id" element={<ArticleView/>}/>
           <Route
             path="/"
             element={

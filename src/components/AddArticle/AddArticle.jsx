@@ -6,15 +6,22 @@ import "./AddArticle.css";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import parse from "html-react-parser";
 
 function AddArticle(props) {
   const [user] = useAuthState(auth);
+
+  const [text, setText] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     image: "",
     createdAt: Timestamp.now().toDate(),
+    body: "",
   });
+
   const [progress, setProgress] = useState(0);
 
   const handleChange = (e) => {
@@ -26,7 +33,7 @@ function AddArticle(props) {
   };
 
   const handleSubmit = () => {
-    if (!formData.title || !formData.description || !formData.image) {
+    if (!formData.title || !formData.description || !formData.image ) {
       alert("Please fill all the fields");
       return;
     }
@@ -53,6 +60,8 @@ function AddArticle(props) {
           title: "",
           description: "",
           image: "",
+          body: "",
+          
         });
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
           const articleRef = collection(db, "Articles");
@@ -63,8 +72,9 @@ function AddArticle(props) {
             createdAt: Timestamp.now().toDate(),
             createdBy: user.displayName,
             userId: user.uid,
-            likes:[],
-            comments:[],
+            likes: [],
+            comments: [],
+            body: text
           })
             .then(() => {
               toast("Article added successfully", { type: "success" });
@@ -121,6 +131,22 @@ function AddArticle(props) {
             className="form-control"
             onChange={(e) => handleImageChange(e)}
           />
+          <div className="editor">
+            <CKEditor
+              className="form-control"
+              editor={ClassicEditor}
+              data={text}
+              value={text}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                setText(data);
+              }}
+            />
+          </div>
+          <div>
+            <h2>Content</h2>
+            {parse(text)}
+          </div>
           {progress === 0 ? null : (
             <div className="progress">
               <div
