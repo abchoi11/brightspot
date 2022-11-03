@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { auth, db } from "../../firebase-config";
 import LikeArticle from "../LikeArticle/LikeArticle";
 import parse from "html-react-parser";
+import Comments from "../Comments/Comments";
 
 function ArticleView(props) {
   const { id } = useParams();
@@ -44,6 +45,7 @@ function ArticleView(props) {
             {article ? parse(String(article.body)) : console.log("nope")}
           </div>
         </div>
+        <Comments id={article.id}/>
       </Col>
     </Row>
   ) : (
