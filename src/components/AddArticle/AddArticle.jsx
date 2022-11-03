@@ -5,13 +5,14 @@ import { storage, db, auth } from "./../../firebase-config";
 import "./AddArticle.css";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import parse from "html-react-parser";
 
 function AddArticle(props) {
   const [user] = useAuthState(auth);
+  let navigate = useNavigate();
 
   const [text, setText] = useState("");
   const [formData, setFormData] = useState({
@@ -64,6 +65,7 @@ function AddArticle(props) {
           
         });
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+          navigate("/");
           const articleRef = collection(db, "Articles");
           addDoc(articleRef, {
             title: formData.title,
