@@ -34,7 +34,7 @@ function AddArticle(props) {
   };
 
   const handleSubmit = () => {
-    if (!formData.title || !formData.description || !formData.image ) {
+    if (!formData.title || !formData.description || !formData.image) {
       alert("Please fill all the fields");
       return;
     }
@@ -62,7 +62,6 @@ function AddArticle(props) {
           description: "",
           image: "",
           body: "",
-          
         });
         getDownloadURL(uploadImage.snapshot.ref).then((url) => {
           navigate("/");
@@ -76,7 +75,7 @@ function AddArticle(props) {
             userId: user.uid,
             likes: [],
             comments: [],
-            body: text
+            body: text,
           })
             .then(() => {
               toast("Article added successfully", { type: "success" });
@@ -89,6 +88,21 @@ function AddArticle(props) {
       }
     );
   };
+
+  const ckeEditor = (
+    <div className="editor">
+      <CKEditor
+        className=""
+        editor={ClassicEditor}
+        data={text}
+        value={text}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          setText(data);
+        }}
+      />
+    </div>
+  );
 
   return (
     <div className="border p-3 mt-3 bg-light articleAdd ">
@@ -114,6 +128,7 @@ function AddArticle(props) {
               name="title"
               className="form-control"
               value={formData.title}
+              placeholder="Title . . ."
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -133,18 +148,8 @@ function AddArticle(props) {
             className="form-control"
             onChange={(e) => handleImageChange(e)}
           />
-          <div className="editor">
-            <CKEditor
-              className="form-control"
-              editor={ClassicEditor}
-              data={text}
-              value={text}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                setText(data);
-              }}
-            />
-          </div>
+          <br></br>
+          {ckeEditor}
           <div>
             <h2>Content</h2>
             {parse(text)}

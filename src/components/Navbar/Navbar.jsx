@@ -3,39 +3,63 @@ import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
+import { Navbar as Bar, Container, NavDropdown, Nav } from "react-bootstrap";
+import logo from "../../images/logo.png";
+import "./Navbar.css";
 
 function Navbar(props) {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="fixed-top border" style={{ backgroundColor: "whitesmoke" }}>
-      <nav className="navbar">
-        <div>
-          <h2>hello</h2>
-        </div>
-        <Link className="nav-link" to="/">
-          Home{" "}
-        </Link>
-        <Link className="nav-link" to="/login">
-          Login{" "}
-        </Link>
-        <Link className="nav-link" to="/register">
-          Sign Up{" "}
-        </Link>
-        <Link className="nav-link" to="/create">
-          Add Article{" "}
-        </Link>
-        <div>
-          {user && (
-            <>
-              <span className="pe-4">
-                Signed is as {user.displayName || user.email}
-              </span>
-              <button className="btn btn-primary btn-sm me-3" onClick={() =>{signOut(auth)}}>Logout</button>
-            </>
-          )}
-        </div>
-      </nav>
+    <div className="fixed-top border">
+      <Bar className="nav" expand="lg" variant="light">
+        <Container>
+          <Bar.Brand>
+            <Link to="/">
+              {" "}
+              <img className="logo" src={logo} />{" "}
+            </Link>
+          </Bar.Brand>
+          <Bar.Toggle aria-controls="basic-navbar-nav" />
+          <Bar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              {" "}
+              {!user && (
+                <Link to="/login" className="link">
+                  Login
+                </Link>
+              )}
+              {!user && (
+                <Link to="/register" className="link">
+                  Sign Up
+                </Link>
+              )}
+              {user && (
+                <Link to="/create" className="link">
+                  Create an Article
+                </Link>
+              )}
+            </Nav>
+            <div>
+              {user && (
+                <div className="link">
+                  <span className="pe-4">
+                    Signed is as {user.displayName || user.email}
+                  </span>
+                  <button
+                    className="btn btn-primary btn-sm me-3"
+                    onClick={() => {
+                      signOut(auth);
+                    }}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          </Bar.Collapse>
+        </Container>
+      </Bar>
     </div>
   );
 }

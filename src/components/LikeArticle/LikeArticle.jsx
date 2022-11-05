@@ -41,6 +41,7 @@ function LikeArticle({ id, likes }) {
         }}
         onClick={handleLike}
       />
+      <p>{likes.length}</p>
     </div>
   );
 }

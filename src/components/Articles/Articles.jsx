@@ -22,7 +22,6 @@ function Articles(props) {
         ...doc.data(),
       }));
       setArticles(articles);
-      console.log(articles);
     });
   }, []);
 

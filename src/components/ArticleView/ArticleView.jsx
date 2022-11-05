@@ -42,9 +42,9 @@ function ArticleView(props) {
           {user && <LikeArticle id={id} likes={article.likes} />}
           <div className="pe-2">
             <p>{article != undefined && article != null ? article.likes.length  : console.log("nope")}</p>
-            {article ? parse(String(article.body)) : console.log("nope")}
           </div>
         </div>
+        {article ? parse(String(article.body)) : console.log("nope")}
         <Comments id={article.id}/>
       </Col>
     </Row>

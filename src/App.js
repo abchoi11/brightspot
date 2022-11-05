@@ -21,11 +21,10 @@ function App() {
             path="/"
             element={
               <Row style={{marginTop:60}}>
+
+                
                 <Col md={8}>
                   <Articles />
-                </Col>
-                <Col md={4}>
-                  <AddArticle />
                 </Col>
               </Row>
             }
