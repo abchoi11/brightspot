@@ -2,6 +2,7 @@ import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase-config";
+import "./LikeArticle.css"
 
 function LikeArticle({ id, likes }) {
   const [user] = useAuthState(auth);
@@ -32,7 +33,7 @@ function LikeArticle({ id, likes }) {
   };
 
   return (
-    <div>
+    <div className="main">
       <i
         className={`fa fa-heart${likes?.includes(user.uid) ? "" : "-o"} fa-lg`}
         style={{
@@ -41,7 +42,7 @@ function LikeArticle({ id, likes }) {
         }}
         onClick={handleLike}
       />
-      <p>{likes.length}</p>
+      <p className="count">{likes.length}</p>
     </div>
   );
 }

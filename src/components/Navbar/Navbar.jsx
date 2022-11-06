@@ -34,7 +34,7 @@ function Navbar(props) {
                   Sign Up
                 </Link>
               )}
-              {user && (
+              {user && user.uid == "q879qcxcrudqvyYCOAJeFfBcibs1" && (
                 <Link to="/create" className="link">
                   Create an Article
                 </Link>
@@ -44,7 +44,7 @@ function Navbar(props) {
               {user && (
                 <div className="link">
                   <span className="pe-4">
-                    Signed is as {user.displayName || user.email}
+                    Signed in as {user.displayName || user.email}
                   </span>
                   <button
                     className="btn btn-primary btn-sm me-3"

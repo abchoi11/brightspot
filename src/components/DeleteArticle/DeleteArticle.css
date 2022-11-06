@@ -1,0 +1,19 @@
+.deleteButton {
+    padding: 2vh 1.5vw;
+    background-color: rgb(255, 78, 78);
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.deleteButton:hover{
+    background-color: rgb(228, 205, 205);
+    color: white;
+}
+
+@media only screen and (max-width: 992px) {
+    .deleteButton {
+        margin-top: 5vh;
+    }
+}

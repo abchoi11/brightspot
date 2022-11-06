@@ -3,6 +3,9 @@ import React from "react";
 import { db, storage } from "../../firebase-config";
 import { toast } from "react-toastify";
 import { ref, deleteObject } from "firebase/storage";
+import { Link } from "react-router-dom";
+
+import "./DeleteArticle.css";
 
 function DeleteArticle({ id, imageURL }) {
   const handleDelete = async () => {
@@ -19,12 +22,9 @@ function DeleteArticle({ id, imageURL }) {
   };
   return (
     <div>
-      <i
-        className="fa fa-times"
-        style={{ cursor: "pointer" }}
-        onClick={handleDelete}
-      >
-      </i>
+      <Link onClick={handleDelete} className="deleteButton">
+        Delete
+      </Link>
     </div>
   );
 }

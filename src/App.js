@@ -7,31 +7,31 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Register from "./components/auth/Register/Register";
 import Login from "./components/auth/Login/Login";
 import ArticleView from "./components/ArticleView/ArticleView";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <Router>
-      <Container>
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/create" element={<AddArticle />} />
-          <Route path="/article/:id" element={<ArticleView/>}/>
+          <Route path="/article/:id" element={<ArticleView />} />
           <Route
             path="/"
             element={
-              <Row style={{marginTop:60}}>
-
-                
-                <Col md={8}>
-                  <Articles />
-                </Col>
-              </Row>
+              <div className="home">
+                <Header />
+                <Row>
+                  <Col md={12}>
+                    <Articles />
+                  </Col>
+                </Row>
+              </div>
             }
           />
         </Routes>
         <Navbar />
-      </Container>
     </Router>
   );
 }

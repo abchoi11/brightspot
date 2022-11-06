@@ -1,7 +1,7 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase-config";
 import DeleteArticle from "../DeleteArticle/DeleteArticle";
@@ -42,48 +42,55 @@ function Articles(props) {
             likes,
             comments,
           }) => (
-            <div key={id} className="border mt-3 p-3 bg-light">
-              <div className="row article-box">
-                <div className="col-3">
-                  <Link to={`/article/${id}`}>
-                    <img
-                      className="coverImage"
-                      src={imageURL}
-                      alt="title image"
-                    />
-                  </Link>
-                </div>
-                <div className="col-9 ps-3">
-                  <Row>
-                    <Col md={6}>
-                      {createdBy && (
-                        <span className="badge bg-primary">{createdBy}</span>
-                      )}
+            <Container className="articleContainer">
+              <Row>
+                <Col lg={6} className="imageContainer">
+                  <img
+                    className="coverImage"
+                    src={imageURL}
+                    alt="title image"
+                  />
+                </Col>
+                <Col lg={6}>
+                  <p className="date">{createdAt.toDate().toDateString()}</p>
+                  <h2 className="title">{title}</h2>
+                  <h4 className="author">By {createdBy}</h4>
+                  <hr></hr>
+                  <h5 className="description">{description}</h5>
+                  <Row className="actionItemsContainer">
+                    <Col lg={5} className="readButtonContainer">
+                      <Link
+                        className="callToActionButton"
+                        to={`/article/${id}`}
+                      >
+                        Read More
+                      </Link>
                     </Col>
-                    <Col md={6}>
+                    <Col lg={3}>
                       {user && user.uid === userId && (
-                        <Col md={6}>
+                        <>
+                          {" "}
                           {createdBy && (
                             <span>
                               <DeleteArticle id={id} imageURL={imageURL} />
                             </span>
                           )}
-                        </Col>
+                        </>
                       )}
                     </Col>
+                    <Col lg={3}>
+                      <div className="d-flex flex-row-reverse">
+                        {user && <LikeArticle id={id} likes={likes} />}
+                      </div>
+                    </Col>
                   </Row>
-                  <h2>{title}</h2>
-                  <p>{createdAt.toDate().toDateString()}</p>
-                  <h5>{description}</h5>
-                  <div className="d-flex flex-row-reverse">
-                    {user && <LikeArticle id={id} likes={likes} />}
-                  </div>
-                </div>
-              </div>
-            </div>
+                </Col>
+              </Row>
+            </Container>
           )
         )
       )}
+      <div className="bottom"></div>
     </div>
   );
 }

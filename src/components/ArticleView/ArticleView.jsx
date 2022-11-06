@@ -40,9 +40,6 @@ function ArticleView(props) {
 
         <div className="d-flex flex-row-reverse">
           {user && <LikeArticle id={id} likes={article.likes} />}
-          <div className="pe-2">
-            <p>{article != undefined && article != null ? article.likes.length  : console.log("nope")}</p>
-          </div>
         </div>
         {article ? parse(String(article.body)) : console.log("nope")}
         <Comments id={article.id}/>

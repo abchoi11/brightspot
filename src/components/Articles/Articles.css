@@ -1,9 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+
+.bottom {
+  height: 30vh;
+}
+
+.articleContainer {
+  margin-top: 4vh;
+  background-color: rgb(247, 247, 247);
+  padding: 6vh 3vw;
+  border-radius: 20px;
+}
+
+.imageContainer {
+  /* background-color:aqua; */
+}
+
 .coverImage {
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
+  max-height: 40vh;
+  width: 85%;
+  object-fit: cover;
+  margin: auto;
+  display: block;
+  border-radius: 15px;
 }
 
 .article_box {
-    background-color: antiquewhite;
+  background-color: antiquewhite;
+}
+
+.date {
+  font-size: 2vmin;
+  font-weight: bold;
+  color: rgb(1, 39, 0);
+}
+
+.title {
+  font-size: 4vmin;
+  font-family: "Raleway";
+  font-weight: bold;
+}
+
+.author {
+  font-size: 2vmin;
+  margin-bottom: 5%;
+  color: rgb(51, 5, 94);
+}
+
+.description {
+  font-size: 2.5vmin;
+  font-weight: normal;
+  margin-right: 20%;
+}
+
+.callToActionButton {
+  padding: 2vh 1.5vw;
+  background-color: rgb(0, 84, 158);
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+}
+
+.callToActionButton:hover {
+  color: white;
+  background-color: rgb(5, 118, 216);
+}
+
+.actionItemsContainer {
+  padding-top: 4vh;
+  display: flex;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .date {
+        margin-top: 2vh;
+    }
+
+    .readButtonContainer {
+        margin-bottom: 5vh;
+    }
 }
