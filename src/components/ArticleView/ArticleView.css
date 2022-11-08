@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+.body {
+  padding-top: 10vh;
+}
+
+.viewTitle {
+  font-family: "Raleway";
+  font-size: 4em;
+  margin-bottom: 5vh;
+}
+
+.viewImage {
+  margin: auto;
+  display: block;
+  width: 60%;
+  margin-bottom: 5vh;
+  border-radius: 15px;
+  max-height: 60vh;
+  object-fit: cover;
+}
+
+.authorBy {
+  font-size: 2em;
+  color: black;
+}
+
+.createdAt {
+  font-size: 2em;
+}
+
+.viewDescription {
+  font-size: 2em;
+}
+
+.articleBody {
+  padding: 2vh 6vw;
+  font-size: 1.25em;
+  margin-bottom: 4vh;
+  font-family: 'Ubuntu'
+}

@@ -10,6 +10,7 @@ import { Container } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase-config";
 import { v4 as uuidv4 } from "uuid";
+import "./Comments.css";
 
 function Comments({ id }) {
   const [comment, setComment] = useState("");
@@ -54,38 +55,19 @@ function Comments({ id }) {
   };
 
   return (
-    <div>
-      <p>Comment</p>
+    <div className="commentContainer">
+      <p className="commentsLabel">Comments</p>
       <div className="container">
         {comments !== null &&
           comments.map(({ commentId, user, comment, userName, createdAt }) => (
             <div key={commentId}>
               <div className="border p-2 mt-2 row">
                 <div className="col-11">
-                  {currentlyLoggedinUser != null ? (
-                    <span
-                      className={`badge ${
-                        user === currentlyLoggedinUser.uid
-                          ? "bg-success"
-                          : "bg-primary"
-                      }`}
-                    >
-                      {userName}
-                    </span>
-                  ) : (
-                    <>
-                      {" "}
-                      <span
-                        className="badge bg-primary"
-                      >
-                        {userName}
-                      </span>
-                    </>
-                  )}
-                  {comment}
+                  <span className="userLabel">{userName}</span>
+                  <div className="commentText">{comment}</div>
                 </div>
                 <div className="col-1">
-                  {user != null ? (
+                  {currentlyLoggedinUser != null  && currentlyLoggedinUser.uid === user ? (
                     <i
                       className="fa fa-times"
                       style={{ cursor: "pointer" }}

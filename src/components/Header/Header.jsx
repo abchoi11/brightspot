@@ -1,11 +1,12 @@
 import React from "react";
 import "./Header.css";
 import { TypeAnimation } from "react-type-animation";
+import cover from "../../images/cover.JPG"
 
 function Header(props) {
   return (
     <div className="header">
-      <TypeAnimation
+      <TypeAnimation className="type"
         // Same String at the start will only be typed once, initially
         sequence={[
           "Hello 👋",

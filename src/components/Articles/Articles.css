@@ -6,9 +6,14 @@
 
 .articleContainer {
   margin-top: 4vh;
-  background-color: rgb(247, 247, 247);
+  background-color: #94bdf1;
+  color: #fffbf9;
   padding: 6vh 3vw;
   border-radius: 20px;
+  font-family: "Raleway";
+}
+
+.articleContainer:hover {
 }
 
 .imageContainer {
@@ -16,8 +21,8 @@
 }
 
 .coverImage {
-  max-height: 40vh;
-  width: 85%;
+  max-height: 60vh;
+  width: 95%;
   object-fit: cover;
   margin: auto;
   display: block;
@@ -29,9 +34,9 @@
 }
 
 .date {
+  font-family: "Raleway";
   font-size: 2vmin;
   font-weight: bold;
-  color: rgb(1, 39, 0);
 }
 
 .title {
@@ -41,20 +46,22 @@
 }
 
 .author {
-  font-size: 2vmin;
+  font-size: 2.5vmin;
   margin-bottom: 5%;
-  color: rgb(51, 5, 94);
+  font-family: "Raleway";
 }
 
 .description {
-  font-size: 2.5vmin;
+  font-size: 3vmin;
+  font-family: "Raleway";
   font-weight: normal;
   margin-right: 20%;
+  margin-top: 5vh;
 }
 
 .callToActionButton {
   padding: 2vh 1.5vw;
-  background-color: rgb(0, 84, 158);
+  background-color: #5f61c7;
   text-decoration: none;
   color: white;
   border-radius: 10px;
@@ -62,21 +69,22 @@
 
 .callToActionButton:hover {
   color: white;
-  background-color: rgb(5, 118, 216);
+  background-color: #494a5a;
 }
 
 .actionItemsContainer {
-  padding-top: 4vh;
+  padding-top: 12vh;
   display: flex;
+  padding-right: 2vw;
+  font-weight: bold;
 }
 
-
 @media only screen and (max-width: 992px) {
-    .date {
-        margin-top: 2vh;
-    }
+  .date {
+    margin-top: 2vh;
+  }
 
-    .readButtonContainer {
-        margin-bottom: 5vh;
-    }
+  .readButtonContainer {
+    margin-bottom: 5vh;
+  }
 }

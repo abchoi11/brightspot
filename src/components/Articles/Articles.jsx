@@ -7,11 +7,13 @@ import { auth, db } from "../../firebase-config";
 import DeleteArticle from "../DeleteArticle/DeleteArticle";
 import LikeArticle from "../LikeArticle/LikeArticle";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Fade from "react-reveal/Fade";
 import "./Articles.css";
 
 function Articles(props) {
   const [user] = useAuthState(auth);
   const [articles, setArticles] = useState([]);
+  let count = 0;
 
   useEffect(() => {
     const articleRef = collection(db, "Articles");
@@ -24,6 +26,7 @@ function Articles(props) {
       setArticles(articles);
     });
   }, []);
+
 
   return (
     <div>
@@ -42,51 +45,53 @@ function Articles(props) {
             likes,
             comments,
           }) => (
-            <Container className="articleContainer">
-              <Row>
-                <Col lg={6} className="imageContainer">
-                  <img
-                    className="coverImage"
-                    src={imageURL}
-                    alt="title image"
-                  />
-                </Col>
-                <Col lg={6}>
-                  <p className="date">{createdAt.toDate().toDateString()}</p>
-                  <h2 className="title">{title}</h2>
-                  <h4 className="author">By {createdBy}</h4>
-                  <hr></hr>
-                  <h5 className="description">{description}</h5>
-                  <Row className="actionItemsContainer">
-                    <Col lg={5} className="readButtonContainer">
-                      <Link
-                        className="callToActionButton"
-                        to={`/article/${id}`}
-                      >
-                        Read More
-                      </Link>
-                    </Col>
-                    <Col lg={3}>
-                      {user && user.uid === userId && (
-                        <>
-                          {" "}
-                          {createdBy && (
-                            <span>
-                              <DeleteArticle id={id} imageURL={imageURL} />
-                            </span>
-                          )}
-                        </>
-                      )}
-                    </Col>
-                    <Col lg={3}>
-                      <div className="d-flex flex-row-reverse">
-                        {user && <LikeArticle id={id} likes={likes} />}
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Container>
+            <Fade left id={id}>
+              <Container className="articleContainer">
+                <Row>
+                  <Col lg={6} className="imageContainer">
+                    <img
+                      className="coverImage"
+                      src={imageURL}
+                      alt="title image"
+                    />
+                  </Col>
+                  <Col lg={6}>
+                    <p className="date">{createdAt.toDate().toDateString()}</p>
+                    <h2 className="title">{title}</h2>
+                    <h4 className="author">By {createdBy}</h4>
+                    <hr></hr>
+                    <h5 className="description">{description}</h5>
+                    <Row className="actionItemsContainer">
+                      <Col lg={5} className="readButtonContainer">
+                        <Link
+                          className="callToActionButton"
+                          to={`/article/${id}`}
+                        >
+                          Read More
+                        </Link>
+                      </Col>
+                      <Col lg={3}>
+                        {user && user.uid === userId && (
+                          <>
+                            {" "}
+                            {createdBy && (
+                              <span>
+                                <DeleteArticle id={id} imageURL={imageURL} />
+                              </span>
+                            )}
+                          </>
+                        )}
+                      </Col>
+                      <Col lg={3}>
+                        <div className="d-flex flex-row-reverse">
+                          {user && <LikeArticle id={id} likes={likes} />}
+                        </div>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Container>
+            </Fade>
           )
         )
       )}

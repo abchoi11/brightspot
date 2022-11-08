@@ -1,12 +1,13 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import { auth, db } from "../../firebase-config";
 import LikeArticle from "../LikeArticle/LikeArticle";
 import parse from "html-react-parser";
 import Comments from "../Comments/Comments";
+import "./ArticleView.css";
 
 function ArticleView(props) {
   const { id } = useParams();
@@ -23,35 +24,38 @@ function ArticleView(props) {
   }, []);
 
   const body = article ? (
-    <Row>
-      <Col md={3}>
-        <img
-          src={article.imageURL}
-          alt={article.title}
-          style={{ width: "100%", padding: 10 }}
-        />
-      </Col>
-      <Col md={9}>
-        <h2>{article.title}</h2>
-        <h5>Author: {article.createdBy}</h5>
-        <div>Cready At: {article.createdAt.toDate().toDateString()}</div>
-        <hr></hr>
-        <h4>{article.description}</h4>
+    <Container>
+      <Row className="body">
+        <Col md={12}>
+          <h2 className="viewTitle">{article.title}</h2>
+          <img src={article.imageURL} alt={article.title} className="viewImage" />
+          <h5 className="authorBy">By {article.createdBy}</h5>
+          <div className="createdAt">
+            {article.createdAt.toDate().toDateString()}
+          </div>
+          <h4 className="viewDescription">{article.description}</h4>
+          <div className="d-flex flex-row-reverse">
+            {user && <LikeArticle id={id} likes={article.likes} />}
+          </div>
+          <hr></hr>
 
-        <div className="d-flex flex-row-reverse">
-          {user && <LikeArticle id={id} likes={article.likes} />}
-        </div>
-        {article ? parse(String(article.body)) : console.log("nope")}
-        <Comments id={article.id}/>
-      </Col>
-    </Row>
+          <div className="articleBody">
+            {article ? parse(String(article.body)) : console.log("nope")}
+          </div>
+
+          <Comments id={article.id} />
+        </Col>
+      </Row>
+    </Container>
   ) : (
     <></>
   );
 
-  return <div className="bg-light border" style={{ marginTop: 70 }}>
+  return (
+    <div className="bg-light border" style={{ marginTop: 70 }}>
       {body}
-  </div>;
+    </div>
+  );
 }
 
 export default ArticleView;
