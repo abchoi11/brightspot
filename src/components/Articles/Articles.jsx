@@ -7,7 +7,6 @@ import { auth, db } from "../../firebase-config";
 import DeleteArticle from "../DeleteArticle/DeleteArticle";
 import LikeArticle from "../LikeArticle/LikeArticle";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Fade from "react-reveal/Fade";
 import "./Articles.css";
 
 function Articles(props) {
@@ -45,7 +44,6 @@ function Articles(props) {
             likes,
             comments,
           }) => (
-            <Fade left id={id}>
               <Container className="articleContainer">
                 <Row>
                   <Col lg={6} className="imageContainer">
@@ -91,7 +89,6 @@ function Articles(props) {
                   </Col>
                 </Row>
               </Container>
-            </Fade>
           )
         )
       )}
