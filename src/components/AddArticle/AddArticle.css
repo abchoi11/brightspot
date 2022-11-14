@@ -1,3 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+
 .articleAdd {
-    flex-direction: column;
+  flex-direction: column;
+  width: 90%;
+  display: block;
+  margin: 15vh auto;
+  background-color: rgb(245, 245, 245);
+  padding: 3em;
+  border-radius: 20px;
+  font-family: "Raleway";
+}
+
+.addArticleHeader {
+  font-size: 3em;
+  color: #ff5959;
+  margin-bottom: 2vh;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.form-control {
+  margin-bottom: 2vh;
+}
+
+.title-form[type="text"] {
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid rgb(181, 181, 255);
+  background-color: transparent;
+  font-size: 5vh;
+  font-weight: bold;
+}
+
+.title-form[type="text"]::placeholder {
+    color: black;
+}
+
+.description-form[type="text"] {
+  border: none;
+  border-radius: 0;
+  border-bottom: 3px solid rgb(181, 181, 255);
+  background-color: transparent;
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+.description-form[type="text"]::placeholder{
+    color: black;
+}
+
+.imageLabel {
+  margin-top: 2vh;
+  margin-left: 0.5vw;
+  margin-bottom: 1vh;
+  font-weight: bold;
+}
+
+.image-form[type="file"] {
+    font-weight: bold;
+  }
+
+.submit {
+  margin-top: 4vh;
+  background-color: #ff5959;
 }

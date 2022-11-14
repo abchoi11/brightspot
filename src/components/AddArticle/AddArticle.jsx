@@ -105,7 +105,7 @@ function AddArticle(props) {
   );
 
   return (
-    <div className="border p-3 mt-3 bg-light articleAdd ">
+    <div className="articleAdd ">
       {!user ? (
         <>
           <div style={{ maxWidth: 400 }}>
@@ -120,40 +120,36 @@ function AddArticle(props) {
       ) : (
         <>
           {" "}
-          <h2>Create Article</h2>
+          <h2 className="addArticleHeader">Create an Article</h2>
           <div className="form-group">
-            <label htmlFor="">Title</label>
             <input
               type="text"
               name="title"
-              className="form-control"
+              className="form-control title-form"
               value={formData.title}
               placeholder="Title . . ."
               onChange={(e) => handleChange(e)}
             />
           </div>
           <br></br>
-          <label htmlFor="">Description</label>
-          <textarea
+          <input
+            type="text"
             name="description"
-            className="form-control"
+            placeholder="Description . . ."
+            className="form-control description-form"
             value={formData.description}
             onChange={(e) => handleChange(e)}
           />
-          <label htmlFor="">Image</label>
+          <label className="imageLabel" htmlFor="">Image</label>
           <input
             type="file"
             name="image"
             accept="image/*"
-            className="form-control"
+            className="form-control image-form"
             onChange={(e) => handleImageChange(e)}
           />
           <br></br>
           {ckeEditor}
-          <div>
-            <h2>Content</h2>
-            {parse(text)}
-          </div>
           {progress === 0 ? null : (
             <div className="progress">
               <div
@@ -165,7 +161,7 @@ function AddArticle(props) {
             </div>
           )}
           <button
-            className="form-control btn-primary mt-2"
+            className="form-control submit"
             onClick={handleSubmit}
           >
             Publish
