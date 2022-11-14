@@ -33,7 +33,7 @@
 }
 
 .title-form[type="text"]::placeholder {
-    color: black;
+    color: rgb(95, 95, 95);
 }
 
 .description-form[type="text"] {
@@ -46,7 +46,7 @@
 }
 
 .description-form[type="text"]::placeholder{
-    color: black;
+    color: rgb(95, 95, 95);
 }
 
 .imageLabel {

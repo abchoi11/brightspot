@@ -1,8 +1,9 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { auth } from "../../../firebase-config";
+import "./Login.css"
 
 //abchoi11@icloud.com = Pepsi2113!
 //abchoi2113@gmail.com = Cokes2113
@@ -11,26 +12,23 @@ export default function Login() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
 
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (error) {
+      window.alert(error.code)
       toast(error.code, { type: "error" });
     }
   };
   return (
-    <div className="border p-3 bg-light mx-auto"
-    style={{maxWidth:400, marginTop:60}}
-    >
+    <div className="bg-light login-container">
       <h1>Login</h1>
       <div className="form-group">
-        <label>Email</label>
         <input
           type="email"
-          className="form-control"
+          className="form-control email-input"
           placeholder="Enter your email"
           onChange={(e) => {
             setEmail(e.target.value);
@@ -39,10 +37,9 @@ export default function Login() {
       </div>
 
       <div className="form-group">
-        <label>Password</label>
         <input
           type="password"
-          className="form-control"
+          className="form-control password-input"
           placeholder="Password"
           onChange={(e) => {
             setPassword(e.target.value);
@@ -53,8 +50,6 @@ export default function Login() {
       <button className="btn btn-primary" onClick={handleLogin}>
         Login
       </button>
-
-      
     </div>
   );
 }

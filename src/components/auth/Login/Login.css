@@ -1,0 +1,35 @@
+.login-container {
+    margin: 15vh auto;
+    width: 60vw;
+    border-radius: 15px;
+    display: block;
+    padding: 3em;
+}
+
+.email-input[type="email"] {
+    border: none;
+    border-radius: 0;
+    border-bottom: 3px solid rgb(181, 181, 255);
+    background-color: transparent;
+    font-size: 3vh;
+    margin-top: 5vh;
+}
+
+.email-input[type="email"]::placeholder {
+    color: rgb(70, 70, 70);
+    font-weight: normal;
+}
+
+.password-input[type="password"] {
+    border: none;
+    border-radius: 0;
+    border-bottom: 3px solid rgb(181, 181, 255);
+    background-color: transparent;
+    font-size: 3vh;
+    margin-top: 5vh;
+}
+
+
+.password-input[type="password"]::placeholder {
+    color: rgb(70, 70, 70);
+}
