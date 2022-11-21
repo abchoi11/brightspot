@@ -60,7 +60,7 @@ function Comments({ id }) {
       <div className="container">
         {comments !== null &&
           comments.map(({ commentId, user, comment, userName, createdAt }) => (
-            <div key={commentId}>
+            <div key={commentId} className="comment">
               <div className="border p-2 mt-2 row">
                 <div className="col-11">
                   <span className="userLabel">{userName}</span>

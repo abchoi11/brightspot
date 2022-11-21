@@ -36,6 +36,11 @@
     color: rgb(95, 95, 95);
 }
 
+.title-form[type="text"]:focus{
+  outline: none;
+  background-color: transparent;
+}
+
 .description-form[type="text"] {
   border: none;
   border-radius: 0;
@@ -43,6 +48,7 @@
   background-color: transparent;
   font-size: 3vh;
   font-weight: bold;
+  overflow:scroll;
 }
 
 .description-form[type="text"]::placeholder{

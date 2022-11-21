@@ -9,6 +9,9 @@
   font-family: "Raleway";
   font-size: 4em;
   margin-bottom: 5vh;
+  font-weight: bold;
+  margin-left: 7vw;
+  margin-right: 7vw;
 }
 
 .viewImage {
@@ -22,16 +25,17 @@
 }
 
 .authorBy {
-  font-size: 2em;
-  color: black;
+  font-size: 1.5em;
+  color: rgb(31, 59, 153);
 }
 
 .createdAt {
-  font-size: 2em;
+  font-size: 1.5em;
+  margin-bottom: 2vh;
 }
 
 .viewDescription {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .articleBody {

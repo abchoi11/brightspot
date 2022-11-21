@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../../../firebase-config";
 import { useNavigate } from "react-router-dom";
+import "./Register.css"
 
 function Register(props) {
   const [email, setEmail] = useState("");
@@ -15,36 +16,33 @@ function Register(props) {
       updateProfile(auth.currentUser, { displayName: name });
       navigate("/");
     } catch (e) {
-        console.log("trouble signing in")
+        window.alert(e.code)
     }
   };
 
   return (
-    <div className="border p-3 bg-light" style={{ marginTop: 70 }}>
+    <div className="register-container bg-light">
       <h1>Register</h1>
       <div className="form-group">
-        <label>Name</label>
         <input
           type="text"
-          className="form-control"
+          className="form-control register-input"
           placeholder="Enter your name"
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="form-group">
-        <label>Email</label>
         <input
           type="email"
-          className="form-control"
+          className="form-control register-input"
           placeholder="Enter your email"
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="form-group">
-        <label>Password</label>
         <input
           type="password"
-          className="form-control"
+          className="form-control register-input"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />

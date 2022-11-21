@@ -17,7 +17,6 @@
 
 .email-input[type="email"]::placeholder {
     color: rgb(70, 70, 70);
-    font-weight: normal;
 }
 
 .password-input[type="password"] {

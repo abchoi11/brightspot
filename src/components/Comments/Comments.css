@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 
 .commentsLabel {
-    font-size: 2em;
-    font-family: 'Ubuntu';
+  font-size: 2em;
+  font-family: "Ubuntu";
 }
 
 .userLabel {
@@ -16,5 +16,4 @@
 }
 
 .commentText {
-  padding-top: 2vh;
 }
